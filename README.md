@@ -1,63 +1,7 @@
-                        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
 <br/>
 <div align="center">
 
-<h3 align="center">LoomUI</h3>
+<h1 align="center">LoomUI</h1>
 <p align="center">
 Dynamic GUI's made easy.
 
