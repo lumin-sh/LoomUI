@@ -9,7 +9,7 @@ val adventureBukkit = "4.3.2"
 //
 
 group = "sh.lumin.loom"
-version = "1.0.1"
+version = "1.0."
 
 repositories {
     mavenCentral()
