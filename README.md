@@ -18,7 +18,7 @@ Dynamic GUI's made easy.
 LoomUI is a Minecraft GUI Library that makes creating dynamic and unique GUI's easy
  ## Usage
 
-To start using LoomUI its dependency needs to be added to your build tool, add the following:
+To start using LoomUI its dependency needs to be added to your build tool:
 
 ### Repository
 
