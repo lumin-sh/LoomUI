@@ -47,7 +47,7 @@ Maven
 <dependency>
     <groupId>sh.lumin</groupId>
     <artifactId>loomui</artifactId>
-    <version>Tag</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
