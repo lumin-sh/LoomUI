@@ -1,8 +1,6 @@
 plugins {
     kotlin("jvm") version "1.9.23"
-    id("io.github.goooler.shadow") version "8.1.7"
-    id("io.papermc.paperweight.userdev") version "1.5.13"
-    id("xyz.jpenilla.run-paper") version "2.2.2"
+    id("maven-publish")
 }
 
 // versions
@@ -11,10 +9,16 @@ val adventureBukkit = "4.3.2"
 //
 
 group = "sh.lumin.loom"
-version = "1.0-SNAPSHOT"
+version = "1.0.0"
 
 repositories {
     mavenCentral()
+    maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/") {
+        content {
+            includeGroup("org.bukkit")
+            includeGroup("org.spigotmc")
+        }
+    }
     maven("https://jitpack.io")
     maven("https://repo.papermc.io/repository/maven-public/")
 }
@@ -22,7 +26,7 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
 
-    paperweight.paperDevBundle("1.20.4-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.20.4-R0.1-SNAPSHOT")
 
     implementation("net.kyori:adventure-api:$adventure")
     implementation("net.kyori:adventure-platform-bukkit:$adventureBukkit")
@@ -33,10 +37,30 @@ tasks {
         useJUnitPlatform()
     }
 
-    runServer { minecraftVersion("1.20.4") }
+    compileJava {
+        options.encoding = Charsets.UTF_8.name()
+        options.release.set(17)
+    }
+
+    javadoc { options.encoding = Charsets.UTF_8.name() }
+
     compileKotlin { kotlinOptions.jvmTarget = "17" }
 
 }
 kotlin {
     jvmToolchain(17)
+}
+
+publishing {
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                groupId = group.toString()
+                artifactId = "loomui"
+                version = version.toString()
+
+                from(components["java"])
+            }
+        }
+    }
 }
