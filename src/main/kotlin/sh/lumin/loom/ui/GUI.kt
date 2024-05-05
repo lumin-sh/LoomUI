@@ -25,6 +25,8 @@ class GUI(title: String, inventoryType: InventorySize) {
     val elements: MutableMap<Int, Element> = mutableMapOf()
     private val inventory: Inventory = Bukkit.createInventory(null, inventoryType.size, MiniMessage.miniMessage().deserialize(title))
     //
+    private var titleProvider: (() -> String) = { title }
+    //
     var onCloseListener: (() -> Unit)? = null
     var onOpenListener: (() -> Unit)? = null
 
@@ -44,6 +46,15 @@ class GUI(title: String, inventoryType: InventorySize) {
             render()
         }
         return getState to setState
+    }
+
+    /**
+     * Sets a dynamic title for the GUI based on the provided title supplier function.
+     * The title will be updated dynamically whenever the GUI is rendered.
+     * @param titleSupplier A function that supplies the title of the GUI.
+     */
+    fun title(titleSupplier: () -> String) {
+        titleProvider = titleSupplier
     }
 
     /**
@@ -98,6 +109,12 @@ class GUI(title: String, inventoryType: InventorySize) {
     }
 
     /**
+     * Reloads the GUI by rendering its elements again.
+     * This function just calls `render()`
+     */
+    fun reload() = render()
+
+    /**
      * Renders the GUI by updating its elements in the inventory.
      * Should not attempt to call this manually.
      * can be done with "val (_, render) = useState(0); render(0);"
@@ -106,6 +123,8 @@ class GUI(title: String, inventoryType: InventorySize) {
         DebugLogger.logTiming(DebugIcon.REFRESH, "Rendered GUI in") {
             // clear UI
             inventory.clear()
+            //
+            inventory.viewers.forEach { it.openInventory.title = titleProvider.invoke() }
             // add all elements
             elements.forEach { (index, element) ->
                 if(element is Slot) {
