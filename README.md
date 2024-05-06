@@ -47,18 +47,18 @@ Maven
 <dependency>
     <groupId>sh.lumin</groupId>
     <artifactId>loomui</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 
 Gradle (Groovy)
 ```groovy
-implementation 'sh.lumin:loomui:1.0.1'
+implementation 'sh.lumin:loomui:1.0.2'
 ```
 
 Gradle (Kotlin
 ```kotlin
-implementation("sh.lumin:loomui:1.0.1")
+implementation("sh.lumin:loomui:1.0.2")
 ```
  ## Contributing
 
