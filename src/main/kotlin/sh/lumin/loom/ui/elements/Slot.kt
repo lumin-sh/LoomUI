@@ -8,6 +8,23 @@ import org.bukkit.inventory.ItemStack
  */
 open class Slot : Element() {
     private var itemSupplier: (() -> ItemStack)? = null
+    private var canPickup = false
+
+    /**
+     * Sets whether this button can be picked up or not.
+     *
+     * @param state The boolean state indicating whether the button can be picked up.
+     */
+    fun canPickup(state: Boolean) {
+        canPickup = state
+    }
+
+    /**
+     * Returns whether this button can be picked up or not.
+     *
+     * @return True if the button can be picked up, false otherwise.
+     */
+    fun canPickup(): Boolean = canPickup
 
     /**
      * Sets the supplier for the item in this slot.

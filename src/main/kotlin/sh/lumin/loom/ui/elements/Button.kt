@@ -8,7 +8,6 @@ import org.bukkit.event.inventory.InventoryClickEvent
  */
 class Button : Slot() {
     private var onClickListener: ((InventoryClickEvent) -> Unit)? = null
-    private var canPickup = false
 
     /**
      * Sets the click listener for this button.
@@ -18,22 +17,6 @@ class Button : Slot() {
     fun onClick(listener: (InventoryClickEvent) -> Unit) {
         onClickListener = listener
     }
-
-    /**
-     * Sets whether this button can be picked up or not.
-     *
-     * @param state The boolean state indicating whether the button can be picked up.
-     */
-    fun canPickup(state: Boolean) {
-        canPickup = state
-    }
-
-    /**
-     * Returns whether this button can be picked up or not.
-     *
-     * @return True if the button can be picked up, false otherwise.
-     */
-    fun canPickup(): Boolean = canPickup
 
     /**
      * Handles the click event for this button.

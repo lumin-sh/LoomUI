@@ -1,6 +1,7 @@
 package sh.lumin.loom
 
 import org.bukkit.plugin.java.JavaPlugin
+import sh.lumin.loom.ui.UIListener
 
 
 /**
@@ -13,6 +14,8 @@ class LoomUI(javaPlugin: JavaPlugin) {
     init {
         plugin = javaPlugin
         initialized = true
+        //
+        plugin.server.pluginManager.registerEvents(UIListener(), plugin)
     }
 
     companion object {
